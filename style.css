@@ -1251,28 +1251,66 @@ body {
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
+  .inv-section {
+    padding: clamp(2.5rem, 5vw, 5rem) clamp(1.2rem, 4vw, 2.5rem);
+  }
+  
   .timeline::before { left: 20px; }
   .timeline-item.left,
   .timeline-item.right {
     flex-direction: row;
     text-align: left;
+    margin-bottom: 2rem;
   }
   .timeline-dot {
     left: 20px;
     transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
   }
   .timeline-card {
     width: calc(100% - 60px);
     margin-left: 50px;
     margin-right: 0;
+    padding: 1.2rem;
   }
+  
   .timer-sep { display: none; }
+  .timer-block {
+    min-width: 80px;
+    padding: 1rem 0.5rem;
+  }
+  
   .schedule-list { padding-left: 1.5rem; }
   .hearts-between {
     flex-direction: row;
     gap: 0.5rem;
+    margin: 1rem 0;
   }
   .big-heart, .mid-heart, .sml-heart { font-size: 1.2rem; }
+  
+  .attendance-row, .contact-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .attend-opt, .contact-link {
+    width: 100%;
+  }
+
+  .music-control {
+    bottom: 5.5rem;
+    right: 1rem;
+  }
+  
+  .scroll-top-btn {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .landing-names {
+    gap: 0.5rem;
+  }
 }
 
 /* ── Back to Cover Button ── */
