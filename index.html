@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dilanga & Kumee – Wedding Invitation</title>
+  <meta name="description" content="You are cordially invited to celebrate the wedding of Dilanga & Kumee on June 25, 2026 at Blue Water, Wadduwa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ======================== PETAL CONTAINER ======================== -->
+<div id="petals-container" class="petals-container"></div>
+
+<!-- ======================== LANDING PAGE ======================== -->
+<section id="landing-page" class="landing-page">
+  <div class="landing-overlay"></div>
+  <div class="landing-content">
+    <p class="landing-pre">You Are Cordially Invited To The Wedding Of</p>
+    <h1 class="landing-names">
+      <span class="name-groom">Dilanga</span>
+      <span class="landing-heart">♥</span>
+      <span class="name-bride">Kumee</span>
+    </h1>
+    <p class="landing-tagline">Are Getting Married</p>
+    <div class="landing-divider">
+      <span class="divider-line"></span>
+      <span class="divider-icon">✦</span>
+      <span class="divider-line"></span>
+    </div>
+    <p class="landing-date">June 25, 2026</p>
+    <p class="landing-location-small">Blue Water Hotel · Wadduwa</p>
+    <button id="open-invitation-btn" class="open-btn" onclick="openInvitation()">
+      <span class="btn-icon">✉</span>
+      <span>Open Invitation</span>
+    </button>
+  </div>
+  <div class="scroll-hint">Scroll down to explore</div>
+</section>
+
+<!-- ======================== ENVELOPE ANIMATION ======================== -->
+<div id="envelope-overlay" class="envelope-overlay hidden">
+  <div class="envelope-wrapper">
+    <div class="envelope" id="envelope">
+      <div class="envelope-flap"></div>
+      <div class="envelope-body">
+        <div class="envelope-letter" id="envelope-letter">
+          <div class="letter-inner">
+            <span class="letter-heart">♥</span>
+            <p>Opening your invitation...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== INVITATION PAGE ======================== -->
+<section id="invitation-page" class="invitation-page hidden">
+
+  <!-- BACK BUTTON (Top Left) -->
+  <button class="back-cover-btn" onclick="closeInvitation()" title="Back to Cover">
+    <span class="back-icon">⇠</span>
+    <span>Back to Cover</span>
+  </button>
+
+  <!-- SECTION 1: Welcome Header -->
+  <div class="inv-section welcome-section">
+    <div class="floral-top">
+      <img src="floral.png" alt="Floral decoration" class="floral-img" />
+    </div>
+    <p class="welcome-pre">Together with their families</p>
+    <h2 class="welcome-heading">We joyfully invite you to celebrate</h2>
+    <p class="welcome-sub">the holy union of</p>
+    <div class="couple-names-big">
+      <span class="cn-groom">Dilanga</span>
+      <span class="cn-amp">♥</span>
+      <span class="cn-bride">Kumee</span>
+    </div>
+    <p class="welcome-message">
+      "Two souls, one heart — bound by love, blessed by family."
+    </p>
+  </div>
+
+  <!-- SECTION 2: Couple Details -->
+  <div class="inv-section couple-section">
+    <div class="section-label">The Couple</div>
+    <div class="couple-cards">
+      <div class="couple-card groom-card">
+        <div class="couple-photo-wrap">
+          <img src="couple.png" alt="The Couple" class="couple-photo" />
+        </div>
+        <h3 class="couple-card-name">Dilanga</h3>
+        <p class="couple-card-role">The Groom</p>
+        <p class="couple-card-desc">Son of a loving family, embarking on a beautiful new chapter of life.</p>
+      </div>
+      <div class="hearts-between">
+        <div class="floating-heart big-heart">♥</div>
+        <div class="floating-heart mid-heart">♥</div>
+        <div class="floating-heart sml-heart">♥</div>
+      </div>
+      <div class="couple-card bride-card">
+        <div class="couple-photo-wrap">
+          <img src="couple.png" alt="The Couple" class="couple-photo bride-photo" />
+        </div>
+        <h3 class="couple-card-name">Kumee</h3>
+        <p class="couple-card-role">The Bride</p>
+        <p class="couple-card-desc">A radiant soul whose smile lights up every room she walks into.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Countdown -->
+  <div class="inv-section countdown-section">
+    <div class="section-label">Counting Down</div>
+    <h2 class="countdown-title">Wedding Starts In</h2>
+    <div class="countdown-timer" id="countdown-timer">
+      <div class="timer-block">
+        <span class="timer-num" id="t-days">00</span>
+        <span class="timer-label">Days</span>
+      </div>
+      <div class="timer-sep">:</div>
+      <div class="timer-block">
+        <span class="timer-num" id="t-hours">00</span>
+        <span class="timer-label">Hours</span>
+      </div>
+      <div class="timer-sep">:</div>
+      <div class="timer-block">
+        <span class="timer-num" id="t-minutes">00</span>
+        <span class="timer-label">Minutes</span>
+      </div>
+      <div class="timer-sep">:</div>
+      <div class="timer-block">
+        <span class="timer-num" id="t-seconds">00</span>
+        <span class="timer-label">Seconds</span>
+      </div>
+    </div>
+    <p class="countdown-date-label">June 25, 2026 · 10:00 AM</p>
+  </div>
+
+  <!-- SECTION 4: Location -->
+  <div class="inv-section location-section">
+    <div class="section-label">Venue</div>
+    <h2 class="location-title">Blue Water Hotel</h2>
+    <p class="location-addr">Talpe, Wadduwa, Sri Lanka</p>
+    <div class="map-container">
+      <iframe
+        id="map-frame"
+        title="Blue Water Hotel Wadduwa"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6!2d79.9!3d6.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2546ab07aba33%3A0x9c12b4eae0e5939!2sBlue%20Water%20Hotel!5e0!3m2!1sen!2slk!4v1699900000000!5m2!1sen!2slk"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <a
+      href="https://maps.google.com/?q=Blue+Water+Hotel+Wadduwa+Sri+Lanka"
+      target="_blank"
+      class="map-btn"
+      id="view-map-btn">
+      📍 View on Google Maps
+    </a>
+  </div>
+
+  <!-- SECTION 5: Event Details -->
+  <div class="inv-section event-section">
+    <div class="section-label">Event Details</div>
+    <h2 class="event-title">Wedding Ceremony</h2>
+    <div class="event-details-grid">
+      <div class="event-detail-item">
+        <div class="detail-icon">📅</div>
+        <div class="detail-info">
+          <span class="detail-label">Date</span>
+          <span class="detail-value">Thursday, June 25, 2026</span>
+        </div>
+      </div>
+      <div class="event-detail-item">
+        <div class="detail-icon">⏰</div>
+        <div class="detail-info">
+          <span class="detail-label">Time</span>
+          <span class="detail-value">10:00 AM Onwards</span>
+        </div>
+      </div>
+      <div class="event-detail-item">
+        <div class="detail-icon">🏨</div>
+        <div class="detail-info">
+          <span class="detail-label">Venue</span>
+          <span class="detail-value">Blue Water Hotel, Wadduwa</span>
+        </div>
+      </div>
+      <div class="event-detail-item">
+        <div class="detail-icon">👗</div>
+        <div class="detail-info">
+          <span class="detail-label">Dress Code</span>
+          <span class="detail-value">Formal Attire · Pastel Colours</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: Love Story Timeline -->
+  <div class="inv-section timeline-section">
+    <div class="section-label">Our Love Story</div>
+    <h2 class="timeline-title">The Journey To Forever</h2>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <div class="timeline-dot">♥</div>
+        <div class="timeline-card">
+          <span class="timeline-year">First Meeting</span>
+          <h4>When Our Eyes Met</h4>
+          <p>A chance encounter that changed everything — the beginning of a beautiful story.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-dot">♥</div>
+        <div class="timeline-card">
+          <span class="timeline-year">First Date</span>
+          <h4>Under the Stars</h4>
+          <p>A magical evening that confirmed what our hearts already knew — we were meant to be.</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-dot">♥</div>
+        <div class="timeline-card">
+          <span class="timeline-year">The Proposal</span>
+          <h4>Will You Marry Me?</h4>
+          <p>Down on one knee, heart racing — she said YES and the world stood still.</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-dot">♥</div>
+        <div class="timeline-card">
+          <span class="timeline-year">June 25, 2026</span>
+          <h4>Forever Begins</h4>
+          <p>Today, we make it official — two hearts, one beautiful forever.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: RSVP & Notes -->
+  <div class="inv-section rsvp-section">
+    <div class="section-label">RSVP</div>
+    <h2 class="rsvp-title">Kindly Respond By June 15, 2026</h2>
+    <p class="rsvp-sub">Please let us know if you'll be joining our special day</p>
+    <div class="rsvp-form-wrap">
+      <form id="rsvp-form" class="rsvp-form" onsubmit="submitRSVP(event)">
+        <div class="form-row">
+          <input type="text" id="rsvp-name" placeholder="Your Full Name" required class="form-input" />
+        </div>
+        <div class="form-row">
+          <input type="tel" id="rsvp-phone" placeholder="Your Phone Number" class="form-input" />
+        </div>
+        <div class="form-row attendance-row">
+          <label class="attend-opt">
+            <input type="radio" name="attendance" value="yes" id="rsvp-yes" required />
+            <span>✓ Joyfully Accept</span>
+          </label>
+          <label class="attend-opt">
+            <input type="radio" name="attendance" value="no" id="rsvp-no" />
+            <span>✗ Regretfully Decline</span>
+          </label>
+        </div>
+        <div class="form-row">
+          <input type="number" id="rsvp-guests" placeholder="Number of Guests (including you)" min="1" max="10" class="form-input" />
+        </div>
+        <div class="form-row">
+          <textarea id="rsvp-message" placeholder="Special message or dietary requirements..." class="form-textarea" rows="3"></textarea>
+        </div>
+        <button type="submit" class="rsvp-submit-btn" id="rsvp-submit">Send RSVP 💌</button>
+      </form>
+      <div id="rsvp-success" class="rsvp-success hidden">
+        <div class="success-icon">💌</div>
+        <h3>Thank You!</h3>
+        <p>Your RSVP has been received. We can't wait to celebrate with you!</p>
+      </div>
+    </div>
+    <div class="contact-info">
+      <p class="contact-label">For enquiries, contact:</p>
+      <div class="contact-links">
+        <a href="tel:+94700000000" class="contact-link" id="contact-phone">📞 +94 70 000 0000</a>
+        <a href="https://wa.me/94700000000" target="_blank" class="contact-link" id="contact-whatsapp">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: Special Notes / Schedule -->
+  <div class="inv-section schedule-section">
+    <div class="section-label">Day Schedule</div>
+    <h2 class="schedule-title">Wedding Day Programme</h2>
+    <div class="schedule-list">
+      <div class="schedule-item">
+        <span class="sch-time">09:30 AM</span>
+        <span class="sch-dot"></span>
+        <span class="sch-event">Guest Arrival & Welcome</span>
+      </div>
+      <div class="schedule-item">
+        <span class="sch-time">10:00 AM</span>
+        <span class="sch-dot"></span>
+        <span class="sch-event">Wedding Ceremony Begins</span>
+      </div>
+      <div class="schedule-item">
+        <span class="sch-time">11:30 AM</span>
+        <span class="sch-dot"></span>
+        <span class="sch-event">Poruwa Ceremony</span>
+      </div>
+      <div class="schedule-item">
+        <span class="sch-time">12:30 PM</span>
+        <span class="sch-dot"></span>
+        <span class="sch-event">Wedding Lunch Reception</span>
+      </div>
+      <div class="schedule-item">
+        <span class="sch-time">02:00 PM</span>
+        <span class="sch-dot"></span>
+        <span class="sch-event">Photo Session & Entertainment</span>
+      </div>
+      <div class="schedule-item">
+        <span class="sch-time">04:00 PM</span>
+        <span class="sch-dot"></span>
+        <span class="sch-event">Cake Cutting & Celebration</span>
+      </div>
+      <div class="schedule-item">
+        <span class="sch-time">06:00 PM</span>
+        <span class="sch-dot"></span>
+        <span class="sch-event">Evening Dinner & Dancing</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="inv-footer">
+    <div class="footer-hearts">
+      <span>♥</span><span>♥</span><span>♥</span>
+    </div>
+    <div class="footer-names">Dilanga &amp; Kumee</div>
+    <p class="footer-date">June 25, 2026</p>
+    <p class="footer-quote">"And so the adventure begins…"</p>
+    <div class="footer-divider"></div>
+    <p class="footer-credit">Made with ♥ | Blue Water Hotel, Wadduwa</p>
+  </footer>
+
+</section>
+
+<!-- ======================== FIREWORKS CANVAS ======================== -->
+<canvas id="fireworks-canvas" class="fireworks-canvas"></canvas>
+
+<!-- ======================== MUSIC CONTROL ======================== -->
+<div class="music-control" id="music-control">
+  <button class="music-btn" id="music-btn" onclick="toggleMusic()" title="Toggle Music">
+    🎵
+  </button>
+  <span class="music-label">Music</span>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top-btn" id="scroll-top-btn" onclick="scrollToTop()" title="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
