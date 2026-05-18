@@ -45,38 +45,24 @@ function spawnOnePetal(container, emojis, index) {
 // 2. ENVELOPE OPEN ANIMATION
 // ══════════════════════════════════════════════════════════
 function openInvitation() {
-  const overlay = document.getElementById('envelope-overlay');
-  const envelope = document.getElementById('envelope');
-
-  overlay.classList.remove('hidden');
-
   // Auto-play the beautiful romantic wedding background music on open
   if (!musicPlaying) {
     toggleMusic();
   }
 
-  // Phase 1: flip the flap
+  const landingPage = document.getElementById('landing-page');
+  const invitationPage = document.getElementById('invitation-page');
+
+  // Smoothly fade out the cover page and transition instantly to the invitation details
+  landingPage.style.transition = 'opacity 0.5s ease';
+  landingPage.style.opacity = '0';
+
   setTimeout(() => {
-    envelope.classList.add('open');
-  }, 300);
-
-  // Phase 2: show the invitation, trigger fireworks
-  setTimeout(() => {
-    overlay.classList.add('hidden');
-    const landingPage = document.getElementById('landing-page');
-    const invitationPage = document.getElementById('invitation-page');
-
-    landingPage.style.transition = 'opacity 0.8s ease';
-    landingPage.style.opacity = '0';
-
-    setTimeout(() => {
-      landingPage.style.display = 'none';
-      invitationPage.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // Reset scroll for invitation page too
-      launchFireworks();
-      initScrollObserver();
-    }, 800);
-  }, 2500);
+    landingPage.style.display = 'none';
+    invitationPage.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top of invitation details
+    initScrollObserver();
+  }, 500);
 }
 
 function closeInvitation() {
