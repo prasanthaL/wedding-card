@@ -254,6 +254,82 @@ body {
   50%       { transform: translateX(-50%) translateY(8px); }
 }
 
+/* ── Cover Page Wedding Card Styling ── */
+.cover-card-container {
+  margin: 1.5rem auto 2.5rem;
+  max-width: 340px;
+  width: 85vw;
+  cursor: pointer;
+  perspective: 1000px;
+  z-index: 5;
+}
+
+.cover-card-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--gold);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.3);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.cover-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.cover-card-wrapper:hover {
+  transform: translateY(-8px) rotateX(4deg) rotateY(-2deg);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 45px rgba(240,208,128,0.5);
+}
+
+.cover-card-wrapper:hover .cover-card-img {
+  transform: scale(1.03);
+}
+
+.cover-card-overlay-hint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,14,20,0.9) 0%, rgba(26,14,20,0.4) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 1.5rem;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+.cover-card-wrapper:hover .cover-card-overlay-hint {
+  opacity: 1;
+}
+
+.envelope-icon {
+  font-size: 2.2rem;
+  color: var(--gold-light);
+  margin-bottom: 0.3rem;
+  text-shadow: 0 0 15px rgba(240,208,128,0.6);
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.tap-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--text-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
 /* ── Envelope Overlay ── */
 .envelope-overlay {
   position: fixed;
@@ -401,6 +477,21 @@ body {
 @keyframes floatImg {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-10px); }
+}
+
+.welcome-card-img {
+  width: min(340px, 80vw);
+  border-radius: 12px;
+  border: 1px solid rgba(201,168,76,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.2);
+  margin-bottom: 1.5rem;
+  transition: all 0.4s ease;
+}
+
+.welcome-card-img:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 30px rgba(240,208,128,0.4);
+  border-color: var(--gold-light);
 }
 
 .welcome-pre {

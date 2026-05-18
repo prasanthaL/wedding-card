@@ -4,7 +4,7 @@
    ============================================================ */
 
 // ── Wedding Date ───────────────────────────────────────────
-const WEDDING_DATE = new Date('2026-06-25T10:00:00');
+const WEDDING_DATE = new Date('2026-06-25T09:00:00');
 
 // ── DOM Ready ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,6 +49,11 @@ function openInvitation() {
   const envelope = document.getElementById('envelope');
 
   overlay.classList.remove('hidden');
+
+  // Auto-play the beautiful romantic wedding background music on open
+  if (!musicPlaying) {
+    toggleMusic();
+  }
 
   // Phase 1: flip the flap
   setTimeout(() => {
@@ -209,12 +214,33 @@ function launchFireworks() {
     }
   }
 
+  function playFireworksSound() {
+    const sound = new Audio('fireworks.mp3');
+    sound.volume = 0.65;
+    sound.play().catch(e => console.log("Sound play failed", e));
+    
+    // Smoothly fade out and pause the sound after 1.1 seconds to perfectly match the visual burst
+    setTimeout(() => {
+      let vol = 0.65;
+      const fade = setInterval(() => {
+        if (vol > 0.05) {
+          vol -= 0.05;
+          sound.volume = vol;
+        } else {
+          clearInterval(fade);
+          sound.pause();
+        }
+      }, 25);
+    }, 1100);
+  }
+
   function burst() {
     const x = 100 + Math.random() * (canvas.width - 200);
     const y = 80 + Math.random() * (canvas.height * 0.5);
     for (let i = 0; i < 80; i++) {
       particles.push(new Particle(x, y));
     }
+    playFireworksSound();
   }
 
   let burstCount = 0;
@@ -249,12 +275,12 @@ function launchFireworks() {
 }
 
 // ══════════════════════════════════════════════════════════
-// 6. MUSIC TOGGLE (Web Audio API ambient tone)
+// 6. MUSIC TOGGLE (High-quality Background Music)
 // ══════════════════════════════════════════════════════════
-let audioCtx = null;
+const bgMusic = new Audio('wedding_music.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 1.0; // Maximized volume for rich, clear background music
 let musicPlaying = false;
-let oscillatorNodes = [];
-let gainNode = null;
 
 function toggleMusic() {
   const btn = document.getElementById('music-btn');
@@ -272,45 +298,16 @@ function toggleMusic() {
 }
 
 function startAmbientMusic() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  gainNode = audioCtx.createGain();
-  gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-  gainNode.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 2);
-  gainNode.connect(audioCtx.destination);
-
-  // Romantic chord – C major: C4 E4 G4 + soft octave
-  const freqs = [261.63, 329.63, 392.00, 523.25, 659.25];
-  oscillatorNodes = freqs.map(freq => {
-    const osc = audioCtx.createOscillator();
-    const oscGain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    oscGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-    osc.connect(oscGain);
-    oscGain.connect(gainNode);
-    osc.start();
-    return osc;
+  if (bgMusic.currentTime === 0) {
+    bgMusic.currentTime = 24; // Skip quiet intro, jump straight to the rich, loud romantic climax
+  }
+  bgMusic.play().catch(error => {
+    console.log("Audio playback failed or was prevented by browser autoplay policy: ", error);
   });
-
-  // LFO for gentle swell
-  const lfo = audioCtx.createOscillator();
-  const lfoGain = audioCtx.createGain();
-  lfo.frequency.setValueAtTime(0.15, audioCtx.currentTime);
-  lfoGain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-  lfo.connect(lfoGain);
-  lfoGain.connect(gainNode.gain);
-  lfo.start();
-  oscillatorNodes.push(lfo);
 }
 
 function stopAmbientMusic() {
-  if (gainNode) {
-    gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1);
-    setTimeout(() => {
-      oscillatorNodes.forEach(o => { try { o.stop(); } catch(e){} });
-      oscillatorNodes = [];
-    }, 1100);
-  }
+  bgMusic.pause();
 }
 
 // ══════════════════════════════════════════════════════════
